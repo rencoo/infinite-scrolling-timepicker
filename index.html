@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .ul-ct {
+      list-style: none;
+      width: 60px;
+      padding: 0;
+      text-align: center;
+      margin: 0;
+      height: 90px;
+      overflow: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      cursor: pointer;
+    }
+    .ul-ct::-webkit-scrollbar {
+      display: none;
+    }
+    .lis1-ct,
+    .lis2-ct {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <ul class="ul-ct">
+    <div class="lis1-ct" style="top: 0;">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+      <li>11</li>
+      <li>12</li>
+    </div>
+    <div class="lis2-ct" style="top: 0;">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+      <li>11</li>
+      <li>12</li>
+    </div>
+  </ul>
+  <script>
+    window.onload = function () {
+      const el = document.querySelector('.ul-ct');
+      const lis1 = document.querySelector('.lis1-ct');
+      const lis2 = document.querySelector('.lis2-ct');
+      el.addEventListener('scroll', () => {
+        const scrollTop = el.scrollTop;
+        const clientHeight = el.clientHeight;
+        const scrollHeight = el.scrollHeight;
+        const blockHeight = lis1.clientHeight;
+        if (scrollHeight > clientHeight && scrollTop + clientHeight === scrollHeight) {
+          const lis1Top = parseInt(lis1.style.top), lis2Top = parseInt(lis2.style.top);
+          if (lis1Top === lis2Top) {
+            lis1.style.top = (lis1Top + blockHeight * 2) + 'px';
+          } else {
+            lis2.style.top = (lis2Top + blockHeight * 2) + 'px';
+          }
+        }
+      });
+    };
+  </script>
+</body>
+</html>
